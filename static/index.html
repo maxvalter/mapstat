@@ -1,0 +1,50 @@
+
+<html lang="en">
+    <head>
+        <script type="text/javascript" src="js/d3.v7.min.js"></script>
+        <script type="text/javascript" src="js/draw_map.js"></script>
+        <script type="text/javascript" src="js/add_legend.js"></script>
+        <script type="text/javascript" src="js/add_table.js"></script>
+        <script type="text/javascript" src="js/mouse_events.js"></script>
+        <script type="text/javascript" src="js/import_agedata.js"></script>
+        <script type="text/javascript" src="js/import_geojson.js"></script>
+        <link rel="stylesheet" href="css/mainstyle.css">
+        <link rel="stylesheet" href="css/table.css">
+        <link rel="stylesheet" href="css/legend.css">
+    </head>
+<body>
+
+<div style="width:100%;float:left">
+<select name="Välj åldersgrupp" id="ageselect">
+    <option value="18-19 years">18-19 years</option>
+    <option value="20-24 years" selected>20-24 years</option>
+    <option value="25-29 years">25-29 years</option>
+    <option value="30-34 years">30-34 years</option>
+    <option value="35-39 years">35-39 years</option>
+    <option value="40-44 years">40-44 years</option>
+    <option value="45-49 years">45-49 years</option>
+    <option value="50-54 years">50-54 years</option>
+    <option value="55-59 years">55-59 years</option>
+    <option value="60-64 years">60-64 years</option>
+    <option value="65-69 years">65-69 years</option>
+    <option value="70-74 years">70-74 years</option>
+    <option value="75-79 years">75-79 years</option>
+    <option value="80-84 years">80-84 years</option>
+    <option value="85-89 years">85-89 years</option>
+    <option value="90-94 years">90-94 years</option>
+    <option value="95-99 years">95-99 years</option>
+    <option value="100+ years">100+ years</option>
+</select>
+<button id="button_table" class="buttons">Toggle Table</button>
+</div>
+
+<svg width="350px" height="550px">
+    <g class="map"></g>
+</svg>
+
+<div id="legend"></div>
+<div id="data_div"></div>
+<div id="table"></div>
+
+</body>
+</html>

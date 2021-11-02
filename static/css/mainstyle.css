@@ -1,0 +1,59 @@
+
+body {
+    margin: 10px;
+    background: #ccc;
+    font: 1.2em sans-serif;
+}
+
+svg {
+    background: #ccc;
+}
+
+#ageselect {
+    float:left;
+}
+
+#data_div {
+    width: 20em;
+    margin: -20em 0 0 20em;
+    color: #000;
+}
+
+.data {
+    letter-spacing:-0.06em;
+    float:left;
+    width:100%;
+}
+
+.title {
+    font-size:1.5em;
+    font-weight:bold;
+}
+
+.subtitle {
+    margin: 0.5em 0 0.3em 0;
+}
+
+.row0 {
+    margin: 0 0 0.3em 0;
+}
+
+.row1 {
+    margin: 0 0 0.6em;
+}
+
+.row2 {
+    font-weight: bold;
+}
+
+.datum {
+    font-size:0.9em;
+    font-weight:lighter;
+    float:left;
+}
+
+.buttons {
+    margin: 0 1em;
+}
+/* .map path {stroke: #000;
+stroke-width: 1px} */
