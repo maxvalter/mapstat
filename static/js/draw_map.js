@@ -33,6 +33,25 @@ function update_data_div(){
               '<div class="data row2">' + data_div_row2 + '</div>')
 }
 
+function update_data_div_deaths() {
+    console.log(deaths[lan_name][agespan])
+
+
+    data_div_title = lan_name;
+    data_div_subtitle = "Agegroup: " + agespan;
+    data_div_row0 = "Number of vaccinated: " + lan_cases;
+    data_div_row1 = "Population: " + lan_population;
+    data_div_row2 = "Number of vaccinated per capita: "
+                        + d3.format(".2%")(ratio);
+
+    d3.select("#data_div")
+        .html('<div class="data title">' + data_div_title + '</div>' +
+              '<div class="data subtitle">' + data_div_subtitle + '</div>' +
+              '<div class="data row0">' + data_div_row0 + '</div>' +
+              '<div class="data row1">' + data_div_row1 + '</div>' +
+              '<div class="data row2">' + data_div_row2 + '</div>')
+}
+
 /* Spread the d3.interpolateReds colour scale between min and max,
 
    maximum value returns "strongest" colour:
@@ -44,11 +63,12 @@ function update_data_div(){
    heat_colour([55,555])(55) == rgb(255, 245, 240) */
 
 function heat_colour([min,max]){
-        return d3.scaleSequential([min,max],d3.interpolateReds);
+        return d3.scaleSequential([min,max],d3.interpolateGreens);
 }
 
 /* Updates the map */
 function update() {
+    console.log(statselect);
     /* [min,max] "agespan" values
        for all counties */
     var minmax = d3.extent(get_age_data_by_age_group_per_capita(agespan));

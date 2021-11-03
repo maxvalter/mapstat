@@ -41,12 +41,12 @@ function spawn_legend(append_to, minmax) {
     //Adjust gradients
     linearGradientTextLabel.append("stop")
     //.attr("offset", "")
-    .attr("stop-color", d3.interpolateReds(0))
+    .attr("stop-color", d3.interpolateGreens(0))
     .attr("stop-opacity", "1")
 
     linearGradientTextLabel.append("stop")
     .attr("offset", "1")
-    .attr("stop-color", d3.interpolateReds(1))
+    .attr("stop-color", d3.interpolateGreens(1))
 
     //Append Box  
     svg.append("rect")
@@ -60,12 +60,12 @@ function spawn_legend(append_to, minmax) {
     //Append Text
     svg.append("text")
 //    .text("Antal sjuka i Covid 19 per län")
-    .text("Antal vaccinerade per capita")
+    .text("Number of vaccinated per capita")
     .attr("y", legendSettings.boxY-5)
     .attr("x", legendSettings.boxX)
     .attr("font-size", legendSettings.fontSize)
-    .attr("font-family", "monospace")
-    .attr("fill", "black");
+    .attr("font-family", "helvetica")
+    .attr("fill", "white");
     
     //---------------
     //Lines
@@ -110,13 +110,14 @@ function spawn_legend(append_to, minmax) {
         .attr("y1",lineSettings.y1)
         .attr("x2",lineSeriesX[0])
         .attr("y2",lineSettings.y2)
-        .style("stroke", "black")
+        .style("stroke", "white")
         .style("stroke-width",2);
     svg.append("text")
         .text(valuesSeries_to_percent(0))
         .attr("y", lineSettings.y2)
         .attr("x", lineSeriesX[0])
         .attr("font-size", textSettings.fontSize)
+        .style("stroke,", "white")
         
 
     svg.append("line")
@@ -124,7 +125,7 @@ function spawn_legend(append_to, minmax) {
         .attr("y1",lineSettings.y1)
         .attr("x2",lineSeriesX[1])
         .attr("y2",lineSettings.y2)
-        .style("stroke", "black")
+        .style("stroke", "white")
         .style("stroke-width",2)
     svg.append("text")
         .text(valuesSeries_to_percent(1))
@@ -137,7 +138,7 @@ function spawn_legend(append_to, minmax) {
         .attr("y1",lineSettings.y1)
         .attr("x2",lineSeriesX[2])
         .attr("y2",lineSettings.y2)
-        .style("stroke", "black")
+        .style("stroke", "white")
         .style("stroke-width",2)
     svg.append("text")
         .text(valuesSeries_to_percent(2))
@@ -150,7 +151,7 @@ function spawn_legend(append_to, minmax) {
         .attr("y1",lineSettings.y1)
         .attr("x2",lineSeriesX[3])
         .attr("y2",lineSettings.y2)
-        .style("stroke", "black")
+        .style("stroke", "white")
         .style("stroke-width",2)
     svg.append("text")
         .text(valuesSeries_to_percent(3))
@@ -163,7 +164,7 @@ function spawn_legend(append_to, minmax) {
         .attr("y1",lineSettings.y1)
         .attr("x2",lineSettings.x2-1)
         .attr("y2",lineSettings.y2)
-        .style("stroke", "black")
+        .style("stroke", "white")
         .style("stroke-width",2)
     svg.append("text")
         .text(d3.format(".2%")(minmax[1]))

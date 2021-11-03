@@ -3,7 +3,6 @@ var age_data;
 var agespan = '20-24 years';
 
 let population_data = {};
-
 /* Import the age data from the agedata.csv file */
 let import_agedata =
     d3.dsv(';', 'data/agedata.csv')

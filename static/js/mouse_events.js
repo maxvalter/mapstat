@@ -1,5 +1,6 @@
 
 var tmp_colour;
+let stat = 'Vaccinated';
 
 /* Callback function for mouseover event, use the "geojson_data" that is passed
  * to the function, to write the lan_name and lan_cases data to the
@@ -23,6 +24,11 @@ function handle_mouseout() {
 /* Callback for the "select" element (used for choosing the age)  */
 function handle_ageselect() {
     agespan = event.target.value;
+    update();
+}
+
+function handle_statselect(){
+    statselect = event.target.value;
     update();
 }
 
@@ -52,6 +58,7 @@ function clickable() {
     d3.selectAll("path").on("mouseover", handle_mouseover);
     d3.selectAll("path").on("mouseout", handle_mouseout);
     d3.select("#ageselect").on("change", handle_ageselect);
+    d3.select("#statselect").on("change", handle_statselect);
     d3.select("#button_table").on("click", handle_button_toggle_table);
 }
 
