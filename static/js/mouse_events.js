@@ -9,11 +9,22 @@ let stat = 'Vaccinated';
 function handle_mouseover(a, geojson_data) {
 
     lan_name = geojson_data.properties.LnNamn;
-    update_data_div(lan_name);
+    if (statselect == 'Vaccinated') {
+        update_data_div(lan_name);
 
-    var this_path = d3.select(this);
-    tmp_colour = this_path.attr("fill");
-    this_path.attr("fill", "#0aa")
+        var this_path = d3.select(this);
+        tmp_colour = this_path.attr("fill");
+        this_path.attr("fill", "#0aa")
+    }
+
+    else if (statselect == 'Deaths') {
+        update_data_div_deaths(lan_name);
+
+        var this_path = d3.select(this);
+        tmp_colour = this_path.attr("fill");
+        this_path.attr("fill", "#0aa")
+    }
+
 }
 
 /* On mouseout, fill the County map with the old colour */
@@ -29,7 +40,14 @@ function handle_ageselect() {
 
 function handle_statselect(){
     statselect = event.target.value;
-    update();
+    if (statselect == 'Deaths') {
+        drawmap_deaths();
+    }
+
+    else if (statselect == 'Vaccinated') {
+        update();
+    }
+    
 }
 
 var display_table = 0;

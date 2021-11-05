@@ -33,16 +33,14 @@ function update_data_div(){
               '<div class="data row2">' + data_div_row2 + '</div>')
 }
 
+
 function update_data_div_deaths() {
-    console.log(deaths[lan_name][agespan])
-
-
+    lan_deaths = get_deaths_by_county(lan_name);
     data_div_title = lan_name;
-    data_div_subtitle = "Agegroup: " + agespan;
-    data_div_row0 = "Number of vaccinated: " + lan_cases;
-    data_div_row1 = "Population: " + lan_population;
-    data_div_row2 = "Number of vaccinated per capita: "
-                        + d3.format(".2%")(ratio);
+    data_div_subtitle = "";
+    data_div_row0 = "Number of deaths: " + lan_deaths;
+    data_div_row1 = "";
+    data_div_row2 = "";
 
     d3.select("#data_div")
         .html('<div class="data title">' + data_div_title + '</div>' +
@@ -62,16 +60,20 @@ function update_data_div_deaths() {
    heat_colour([0,99])(0) == rgb(255, 245, 240)
    heat_colour([55,555])(55) == rgb(255, 245, 240) */
 
-function heat_colour([min,max]){
+function heat_colour_green([min,max]){
         return d3.scaleSequential([min,max],d3.interpolateGreens);
+}
+
+function heat_colour_red([min,max]){
+    return d3.scaleSequential([min,max],d3.interpolateReds);
 }
 
 /* Updates the map */
 function update() {
-    console.log(statselect);
     /* [min,max] "agespan" values
        for all counties */
     var minmax = d3.extent(get_age_data_by_age_group_per_capita(agespan));
+
 
     update_data_div();
 
@@ -87,9 +89,37 @@ function update() {
        .data(get_geojson_features())
 
     u.attr("fill", d =>
-           heat_colour(minmax)(
+           heat_colour_green(minmax)(
            get_age_data_by_age_group_and_county_per_capita(d.properties.LnNamn,
                                                            agespan))
+       )
+    
+    d3.select("#legend svg").remove();
+    spawn_legend("#legend", minmax);
+}
+
+function drawmap_deaths() {
+    /* [min,max] "agespan" values
+       for all counties */
+    var minmax = d3.extent(get_death_values());
+    console.log(minmax);
+    update_data_div_deaths();
+
+    /* select g.map (take a look at the index.html - it is the "g" tag of class
+     * "map" inside the svg tag), parse through all the data we get through
+     * get_geojson_features(), which is map vector data of every County/Län -
+     * assign it to <path> tag, basically, draw the map. Read more about path
+     * tag/element:
+      https://developer.mozilla.org/en-US/docs/Web/SVG/Element/path
+     */
+
+    let u = d3.select('g.map')
+       .selectAll('path')
+       .data(get_geojson_features())
+
+    u.attr("fill", d =>
+           heat_colour_red(minmax)(
+           get_deaths_by_county(d.properties.LnNamn))
        )
     
     d3.select("#legend svg").remove();
@@ -121,14 +151,11 @@ function draw_map(){
       https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d */
        .attr('d', geoGenerator)
 
-
     /* Set some initial values */
     d3.select("select#ageselect").node().value = agespan; // selector
-    lan_name = "Västra Götaland County";
+    lan_name = "Västra Götaland";
     update_data_div();
-
     add_table(age_data, "div#table");
     /* add colours to the map */
     update();
 }
-
